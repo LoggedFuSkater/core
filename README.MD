@@ -1,4 +1,5 @@
 # LoggedFuSkater
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 LoggedFuSkater is a set of libraries that provides identical string obfuscation in multiple languages.
 
 ## Output
