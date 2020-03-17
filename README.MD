@@ -8,15 +8,15 @@ The output will be a three word string with optional(up to eight) hexadecimal by
 For example _IncreasinglyAngryBanana_, or with two bytes of padding _IncreasinglyAngryBanana3D9F_.
 
 ## Algorithm
-Sha1 is used to hash the input into an array of 20 bytes. The bytes will be split as follows: [0..4] adverb index, [4..8] adjective index, [8..12] noun index, [12..20] padding bytes. The indexes are unsigned or absolute 32 bit integers parsed with little endian. The resulting word in each category is index modulo word count. The final result is then AdverbAdjectiveNounPadding where padding is the configured number of bytes(0-8) represented by upper case hexadecimal characters.
+Sha1 is used to hash the input into an array of 20 bytes. The bytes will be split as follows: [0..4] adverb index, [4..8] adjective index, [8..12] noun index, [12..20] padding bytes. The indexes are unsigned 32 bit integers parsed with little endian. The resulting word in each category is index modulo word count. The final result is then AdverbAdjectiveNounPadding where padding is the configured number of bytes(0-8) represented by upper case hexadecimal characters.
 
 ### Pseudocode
 ```
 hash_bytes = Sha1(input)
 
-adverb_index = LittleEndian.Uint32(hash_bytes[0..4]) OR Abs(LittleEndian.Int32(hash_bytes[0..4]))
-adjective_index = LittleEndian.Uint32(hash_bytes[4..8]) OR Abs(LittleEndian.Int32(hash_bytes[4..8]))
-noun_index = LittleEndian.Uint32(hash_bytes[8..12]) OR Abs(LittleEndian.Int32(hash_bytes[8..12]))
+adverb_index = LittleEndian.Uint32(hash_bytes[0..4])
+adjective_index = LittleEndian.Uint32(hash_bytes[4..8])
+noun_index = LittleEndian.Uint32(hash_bytes[8..12])
 
 padding = hash_bytes[12..(12 + padding_count)]
 
